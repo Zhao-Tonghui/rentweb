@@ -1,0 +1,25 @@
+
+.main{
+    margin-top:20px;
+    margin-left: 20px;
+}
+table{
+    border-collapse: collapse;
+}
+table td{
+    padding: 13px;
+}
+.foot{
+    margin-top: 120px;
+    background:#222c3a;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    color: white;
+    position: absolute;
+
+}
+.footchar{
+    left:50%;
+    top:50%;
+}

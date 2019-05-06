@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zth.mapper.RentInfoMapper">
+    <insert id="addhouse">
+        insert into rent_info
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="title!=null and title!=''">
+                ,title
+            </if>
+            <if test="type!=null and type!=''">
+                ,type
+            </if>
+            <if test="area!=null and area!=''">
+                ,area
+            </if>
+            <if test="rentMoney!=null and rentMoney!=''">
+                ,rentmoney
+            </if>
+            <if test="phonenumber!=null and phonenumber!=''">
+                ,phonenumber
+            </if>
+            <if test="category1!=null and category1!=''">
+                ,category1
+            </if>
+            <if test="category2!=null and category2!=''">
+                ,category2
+            </if>
+            <if test="detailAddress!=null and detailAddress!=''">
+                ,detailaddress
+            </if>
+            <if test="createDate!=null">
+                ,createdate
+            </if>
+            <if test="img!=null and img!=''">
+                ,img
+            </if>
+            <if test="more!=null and more!=''">
+                ,more
+            </if>
+            <if test="1">
+                ,systemboolean
+            </if>
+            <if test="1">
+                ,state
+            </if>
+            <if test="1">
+                ,masterid
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" prefixOverrides=",">
+            <if test="title!=null and title!=''">
+                ,#{title}
+            </if>
+            <if test="type!=null and type!=''">
+                ,#{type}
+            </if>
+            <if test="area!=null and area!=''">
+                ,#{area}
+            </if>
+            <if test="rentMoney!=null and rentMoney!=''">
+                ,#{rentMoney}
+            </if>
+            <if test="phonenumber!=null and phonenumber!=''">
+                ,#{phonenumber}
+            </if>
+            <if test="category1!=null and category1!=''">
+                ,#{category1}
+            </if>
+            <if test="category2!=null and category2!=''">
+                ,#{category2}
+            </if>
+            <if test="detailAddress!=null and detailAddress!=''">
+                ,#{detailAddress}
+            </if>
+            <if test="createDate!=null">
+                ,#{createDate}
+            </if>
+            <if test="img!=null and img!=''">
+                ,#{img}
+            </if>
+            <if test="more!=null and more!=''">
+                ,#{more}
+            </if>
+
+            <if test="1">
+                ,"是"
+            </if>
+            <if test="1">
+                ,"未审核"
+            </if>
+            <if test="1">
+                ,1
+            </if>
+        </trim>
+    </insert>
+
+    <select id="queryAllhouse" resultType="com.zth.pojo.RentInfo">
+        select id,title,type,area,rentmoney as rentMoney,phonenumber,category1,category2,detailaddress as detailAddress,createdate as createDate,img,more,systemboolean,state,masterid
+        from rent_info
+    </select>
+
+    <select id="queryNotrenthouse" resultType="com.zth.pojo.RentInfo">
+        select id,title,type,area,rentmoney as rentMoney,phonenumber,category1,category2,detailaddress as detailAddress,createdate as createDate,img,more,systemboolean,state,masterid
+        from rent_info
+        where state!="已租"
+    </select>
+
+    <select id="queryHousedetailById" resultType="com.zth.pojo.RentInfo">
+        select id,title,type,area,rentmoney as rentMoney,phonenumber,category1,category2,detailaddress as detailAddress,createdate as createDate,img,more,systemboolean,state,masterid
+        from rent_info
+        where id=#{id}
+    </select>
+
+    <delete id="deleteHouse">
+        delete from rent_info where id=#{id}
+    </delete>
+    <update id="updateHousestate">
+        update rent_info
+        set state="未租"
+        where id=#{id}
+    </update>
+    <update id="updateHouseTenant">
+        update rent_info
+        set tenanterid=#{tenantid},state="已租"
+        where id=#{id}
+    </update>
+    <select id="selectAboutContract" resultType="com.zth.pojo.Contract">
+        select a.type,a.area,a.rentmoney as rentMoney,a.category1,a.category2,
+        b.realname as tenantRealName,b.phonenumber as tenantphonenumber,b.idnumber as tenantidnumber,
+        c.realname as masterRealName,b.phonenumber as masterphonenumber,b.idnumber as masteridnumber
+        from rent_info a,common_user b,common_user c
+        where a.id=#{id} and b.id=a.tenanterid and c.id=a.masterid
+    </select>
+    <select id="queryHouseByCategory" resultType="com.zth.pojo.RentInfo">
+        select id,title,type,area,rentmoney as rentMoney,phonenumber,category1,category2,detailaddress as detailAddress,createdate as createDate,img,more,systemboolean,state,masterid
+        from rent_info
+        where category2=#{category2} and state!="已租"
+    </select>
+
+    <select id="queryHouseByTenanterid" resultType="com.zth.pojo.RentInfo">
+        select id,title,type,area,rentmoney as rentMoney,phonenumber,category1,category2,detailaddress as detailAddress,masterid,state
+        from rent_info
+        where tenanterid=#{id}
+    </select>
+
+    <select id="queryHouseByMasterid" resultType="com.zth.pojo.RentInfo">
+        select id,title,type,area,rentmoney as rentMoney,phonenumber,category1,category2,detailaddress as detailAddress,masterid,state
+        from rent_info
+        where masterid=#{id}
+    </select>
+
+    <update id="deleteHouseTenanterid">
+        update rent_info
+        set tenanterid=null,state="未租"
+        where id=#{id}
+    </update>
+
+    <insert id="addcommonhouse">
+        insert into rent_info
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="title!=null and title!=''">
+                ,title
+            </if>
+            <if test="type!=null and type!=''">
+                ,type
+            </if>
+            <if test="area!=null and area!=''">
+                ,area
+            </if>
+            <if test="rentMoney!=null and rentMoney!=''">
+                ,rentmoney
+            </if>
+            <if test="phonenumber!=null and phonenumber!=''">
+                ,phonenumber
+            </if>
+            <if test="category1!=null and category1!=''">
+                ,category1
+            </if>
+            <if test="category2!=null and category2!=''">
+                ,category2
+            </if>
+            <if test="detailAddress!=null and detailAddress!=''">
+                ,detailaddress
+            </if>
+            <if test="createDate!=null">
+                ,createdate
+            </if>
+            <if test="img!=null and img!=''">
+                ,img
+            </if>
+            <if test="more!=null and more!=''">
+                ,more
+            </if>
+            <if test="1">
+                ,systemboolean
+            </if>
+            <if test="1">
+                ,state
+            </if>
+            <if test="1">
+                ,masterid
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" prefixOverrides=",">
+            <if test="title!=null and title!=''">
+                ,#{title}
+            </if>
+            <if test="type!=null and type!=''">
+                ,#{type}
+            </if>
+            <if test="area!=null and area!=''">
+                ,#{area}
+            </if>
+            <if test="rentMoney!=null and rentMoney!=''">
+                ,#{rentMoney}
+            </if>
+            <if test="phonenumber!=null and phonenumber!=''">
+                ,#{phonenumber}
+            </if>
+            <if test="category1!=null and category1!=''">
+                ,#{category1}
+            </if>
+            <if test="category2!=null and category2!=''">
+                ,#{category2}
+            </if>
+            <if test="detailAddress!=null and detailAddress!=''">
+                ,#{detailAddress}
+            </if>
+            <if test="createDate!=null">
+                ,#{createDate}
+            </if>
+            <if test="img!=null and img!=''">
+                ,#{img}
+            </if>
+            <if test="more!=null and more!=''">
+                ,#{more}
+            </if>
+
+            <if test="1">
+                ,"否"
+            </if>
+            <if test="1">
+                ,"未审核"
+            </if>
+            <if test="1">
+                ,#{masterid}
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

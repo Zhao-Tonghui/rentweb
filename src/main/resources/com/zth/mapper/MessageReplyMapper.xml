@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zth.mapper.MessageReplyMapper">
+    <select id="queryReplyById" resultType="com.zth.pojo.MessageReply">
+        select id,replyname as replyName,detail,createdate as createDate,messageid from message_reply
+        where messageid=#{id}
+    </select>
+    <insert id="addmessagereply">
+        insert into message_reply (messageid, replyname, detail, createdate) VALUES (#{messageid},#{replyName},#{detail},#{createDate})
+    </insert>
+    <delete id="deleteReplyByMessageid">
+        delete from message_reply where messageid=#{id}
+    </delete>
+    <delete id="deleteReplyById">
+        delete from message_reply where id=#{id}
+    </delete>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zth.mapper.NoticeMapper">
+    <select id="queryAllnotice" resultType="com.zth.pojo.Notice">
+        select * from notice order by date desc
+    </select>
+    <delete id="deleteNotice">
+        delete from notice where id=#{id}
+    </delete>
+    <insert id="addnotice">
+        insert into notice (title, detail,date) values (#{title},#{detail},#{date})
+    </insert>
+</mapper>

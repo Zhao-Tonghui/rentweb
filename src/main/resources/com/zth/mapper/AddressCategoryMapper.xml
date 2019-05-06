@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zth.mapper.AddressCategoryMapper">
+    <select id="queryAllLevel1" resultType="com.zth.pojo.AddressCategory">
+        select id,code,name,parentname
+        from address_category
+        where parentname is null
+    </select>
+    <select id="queryLevel2ByLevel1" resultType="com.zth.pojo.AddressCategory">
+        select id,code,name,parentname
+        from address_category
+        where parentname=#{name}
+    </select>
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zth.mapper.ForeUserMapper">
+
+    <select id="queryAlluser" resultType="com.zth.pojo.ForeUser">
+    select *
+    from common_user;
+    </select>
+
+    <insert id="adduser">
+        insert into common_user
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="commonUsername!=null and commonUsername!=''">
+                ,commonusername
+            </if>
+            <if test="password!=null and password!=''">
+                ,password
+            </if>
+            <if test="realName!=null and realName!=''">
+                ,realname
+            </if>
+            <if test="phonenumber!=null and phonenumber!=''">
+                ,phonenumber
+            </if>
+            <if test="idnumber!=null and idnumber!=''">
+                ,idnumber
+            </if>
+            <if test="address!=null and address!=''">
+                ,address
+            </if>
+            <if test="role!=null and role!=''">
+                ,role
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" prefixOverrides=",">
+            <if test="commonUsername!=null and commonUsername!=''">
+                ,#{commonUsername}
+            </if>
+            <if test="password!=null and password!=''">
+                ,#{password}
+            </if>
+            <if test="realName!=null and realName!=''">
+                ,#{realName}
+            </if>
+            <if test="phonenumber!=null and phonenumber!=''">
+                ,#{phonenumber}
+            </if>
+            <if test="idnumber!=null and idnumber!=''">
+                ,#{idnumber}
+            </if>
+            <if test="address!=null and address!=''">
+                ,#{address}
+            </if>
+            <if test="role!=null and role!=''">
+                ,#{role}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteuser">
+delete from common_user where id=#{id}
+    </delete>
+
+    <select id="queryByNamePw" resultType="com.zth.pojo.ForeUser">
+        select id,commonusername as commonUsername,password,role,realname as realName,phonenumber,idnumber,address
+        from common_user
+        <where>
+            <if test="commonUsername!=null and commonUsername!=''">
+                and commonusername=#{commonUsername}
+            </if>
+            <if test="password!=null and password!=''">
+                and password=#{password}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryUserById" resultType="com.zth.pojo.ForeUser">
+        select id,commonusername as commonUsername,password,role,realname as realName,phonenumber,idnumber,address
+        from common_user
+        where id=#{id}
+    </select>
+
+    <update id="updateuser">
+        update common_user
+        set realname=#{realName},phonenumber=#{phonenumber},idnumber=#{idnumber},address=#{address}
+        where id=#{id}
+    </update>
+</mapper>

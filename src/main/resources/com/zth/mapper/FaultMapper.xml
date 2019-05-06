@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zth.mapper.FaultMapper">
+    <select id="queryAllfault" resultType="com.zth.pojo.FaultInfo">
+        select id, userid, address, detail,state, createdate as createDate from fault
+        where state="待维修"
+    </select>
+    <update id="updateFaultstate">
+        update fault
+        set state="已维修"
+        where id=#{id}
+    </update>
+    <insert id="addFault">
+        insert into fault (userid, address, detail, createdate, state) values (#{userid},#{address},#{detail},#{createDate},#{state})
+    </insert>
+</mapper>

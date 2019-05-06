@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zth.mapper.BackUserMapper">
+<select id="queryByNamePw" resultType="com.zth.pojo.BackUser">
+    select adminname as adminName,adminpassword as adminPassword
+    from admin_user
+    <where>
+        <if test="adminName!=null and adminName!=''">
+            and adminname=#{adminName}
+        </if>
+        <if test="adminPassword!=null and adminPassword!=''">
+            and adminpassword=#{adminPassword}
+        </if>
+    </where>
+</select>
+</mapper>
