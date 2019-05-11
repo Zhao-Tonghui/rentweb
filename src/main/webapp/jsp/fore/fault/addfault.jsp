@@ -50,9 +50,9 @@
 
     $(function () {
             if('${sucfault}'!=null && '${sucfault}'!=''){
-                if("${sucfault}==true")
+                if("${sucfault}"==true)
                     alert("已报障");
-                else if("${sucfault}==false") alert("报障失败");
+                else if("${sucfault}"==false) alert("报障失败");
             }
         }
     )

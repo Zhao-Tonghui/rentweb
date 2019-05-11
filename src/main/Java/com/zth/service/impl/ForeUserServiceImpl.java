@@ -1,7 +1,9 @@
 package com.zth.service.impl;
 
 import com.zth.mapper.ForeUserMapper;
+import com.zth.mapper.RentInfoMapper;
 import com.zth.pojo.ForeUser;
+import com.zth.pojo.RentInfo;
 import com.zth.service.ForeUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,9 @@ import java.util.List;
 public class ForeUserServiceImpl implements ForeUserService {
     @Autowired
     private ForeUserMapper foreUserMapper;
+
+    @Autowired
+    private RentInfoMapper rentInfoMapper;
 
     @Override
     public List<ForeUser> queryAlluser() {
@@ -26,8 +31,14 @@ public class ForeUserServiceImpl implements ForeUserService {
 
     @Override
     public boolean deleteUser(Integer id) {
-        int row=foreUserMapper.deleteuser(id);
-        return row==1 ? true : false;
+        List<RentInfo> rentInfos1=rentInfoMapper.queryHouseByTenanterid(id);
+        List<RentInfo> rentInfos2=rentInfoMapper.queryHouseByMasterid(id);
+        if(rentInfos1.isEmpty() && rentInfos2.isEmpty())
+        {
+            int row=foreUserMapper.deleteuser(id);
+            return row==1 ? true : false;
+        }
+        return false;
     }
 
     @Override

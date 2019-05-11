@@ -61,15 +61,15 @@
     $(function () {
 
         if('${sucuser}'!=null && '${sucuser}'!=''){
-            if("${sucuser}==true")
+            if("${sucuser}"==true)
                 alert("添加成功");
-            else if("${sucuser}==false") alert("添加失败");
+            else if("${sucuser}"==false) alert("添加失败");
         }
 
         if('${sucdelete}'!=null && '${sucdelete}'!=''){
-            if("${sucdelete}==true")
+            if("${sucdelete}"==true)
                 alert("删除成功");
-            else if("${sucdelete}==false") alert("删除失败");
+            else alert("删除失败，该用户可能有在租房源或已租房源");
         }
     })
 </script>

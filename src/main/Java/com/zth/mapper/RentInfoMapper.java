@@ -34,5 +34,7 @@ public interface RentInfoMapper {
 
     int deleteHouseTenanterid(@Param("id")Integer id);
 
-    List<RentInfo> queryHouseByMasterid(Integer id);
+    List<RentInfo> queryHouseByMasterid(@Param("id")Integer id);
+
+    RentInfo queryHouseByTenanteridBollean(@Param("id")Integer id);
 }

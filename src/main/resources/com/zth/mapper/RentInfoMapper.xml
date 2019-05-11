@@ -102,7 +102,7 @@
     <select id="queryNotrenthouse" resultType="com.zth.pojo.RentInfo">
         select id,title,type,area,rentmoney as rentMoney,phonenumber,category1,category2,detailaddress as detailAddress,createdate as createDate,img,more,systemboolean,state,masterid
         from rent_info
-        where state!="已租"
+        where state="未租"
     </select>
 
     <select id="queryHousedetailById" resultType="com.zth.pojo.RentInfo">
@@ -141,6 +141,12 @@
         select id,title,type,area,rentmoney as rentMoney,phonenumber,category1,category2,detailaddress as detailAddress,masterid,state
         from rent_info
         where tenanterid=#{id}
+    </select>
+
+    <select id="queryHouseByTenanteridBollean" resultType="com.zth.pojo.RentInfo">
+        select id,title,type,area,rentmoney as rentMoney,phonenumber,category1,category2,detailaddress as detailAddress,masterid,state,tenanterid
+        from rent_info
+        where id=#{id} and tenanterid=null
     </select>
 
     <select id="queryHouseByMasterid" resultType="com.zth.pojo.RentInfo">

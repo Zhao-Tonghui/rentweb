@@ -73,9 +73,9 @@
 
     $(function () {
             if('${sucdel}'!=null && '${sucdel}'!=''){
-                if("${sucdel}==true")
+                if("${sucdel}"==true)
                     alert("退租成功");
-                else if("${sucdel}==false") alert("退租失败");
+                else if("${sucdel}"==false) alert("退租失败");
             }
         }
     )

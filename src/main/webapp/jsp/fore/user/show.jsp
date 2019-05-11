@@ -39,9 +39,9 @@
 
     $(function () {
             if('${upduser}'!=null && '${upduser}'!=''){
-                if("${upduser}==true")
+                if("${upduser}"==true)
                     alert("修改成功");
-                else if("${upduser}==false") alert("修改失败");
+                else if("${upduser}"==false) alert("修改失败");
             }
         }
     )

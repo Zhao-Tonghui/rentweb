@@ -29,7 +29,13 @@ public class RentInfoServiceImpl implements RentInfoService {
 
     @Override
     public boolean deleteHouse(Integer id) {
-        return rentInfoMapper.deleteHouse(id)==1 ? true: false;
+
+        RentInfo rentInfo=rentInfoMapper.queryHouseByTenanteridBollean(id);
+        if(rentInfo!=null)
+        {
+            return rentInfoMapper.deleteHouse(id)==1 ? true: false;
+        }
+        return false;
     }
 
     @Override

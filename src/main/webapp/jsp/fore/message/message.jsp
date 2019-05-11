@@ -53,9 +53,9 @@
     $(function () {
 
         if('${sucmes}'!=null && '${sucmes}'!=''){
-            if("${sucmes}==true")
+            if("${sucmes}"==true)
                 alert("留言成功");
-            else if("${sucmes}==false") alert("留言失败");
+            else if("${sucmes}"==false) alert("留言失败");
         }
 
     })

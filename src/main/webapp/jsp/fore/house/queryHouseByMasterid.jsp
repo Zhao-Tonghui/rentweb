@@ -74,9 +74,9 @@
 
     $(function () {
             if('${sucdel}'!=null && '${sucdel}'!=''){
-                if("${sucdel}==true")
+                if("${sucdel}"==true)
                     alert("删除成功");
-                else if("${sucdel}==false") alert("删除失败");
+                else if("${sucdel}"==false) alert("删除失败");
             }
         }
     )

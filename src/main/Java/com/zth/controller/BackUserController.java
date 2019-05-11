@@ -95,6 +95,7 @@ public class BackUserController {
     @RequestMapping("/user/deleteUser/{id}")
     public String deleteUser(@PathVariable("id")Integer id, Model model){
         boolean sucdelete=foreUserService.deleteUser(id);
+        System.out.println(sucdelete);
         model.addAttribute("sucdelete",sucdelete);
         List<ForeUser> list1=foreUserService.queryAlluser();
         model.addAttribute("users",list1);

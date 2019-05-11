@@ -58,9 +58,9 @@
     $(function () {
 
         if('${sucupdate}'!=null && '${sucupdate}'!=''){
-            if("${sucupdate}==true")
+            if("${sucupdate}"==true)
                 alert("更新通过");
-            else if("${sucupdate}==false") alert("更新失败");
+            else if("${sucupdate}"==false) alert("更新失败");
         }
     })
 </script>

@@ -51,9 +51,9 @@
     $(function () {
 
         if('${sucmes}'!=null && '${sucmes}'!=''){
-            if("${sucmes}==true")
+            if("${sucmes}"==true)
                 alert("回复成功");
-            else if("${sucmes}==false") alert("回复失败");
+            else if("${sucmes}"==false) alert("回复失败");
         }
 
     })
